@@ -1,9 +1,12 @@
 public class World  {
-    private int gridX = 50;
-    private int gridY = 50;
+    private int gridX;
+    private int gridY;
 
 
-    public World() {}
+    public World(int gridX, int gridY) {
+        this.gridX = gridX;
+        this.gridY = gridY;
+    }
 
     public int getGridX(){
         return this.gridX;

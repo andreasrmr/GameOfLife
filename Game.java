@@ -6,15 +6,26 @@ public class Game{
     ArrayList<Cell> cells = new ArrayList<Cell>();
     boolean running = true;
     Visuals visuals;
-    World world = new World();
+    World world = new World(30, 30);
 
     public Game(){
 
-        for (int x = 0; x < 10; x++) {
+        //Initialiser 1. generation.
+
+        //x aksen
+        for (int x = 0; x < world.getGridX(); x++) {
             //y aksen
-            for (int y = 0; y < 10; y++) {
-                if(x % 5 == 0){
-                    cells.add(new Cell(x, y, true));
+            for (int y = 0; y < world.getGridY(); y++) {
+
+                //definer levende celler  på x aksen
+                if(x % 15 == 0 && x != 0){
+                    //definer levende celler på y aksen
+                    if(y >= 10 && y < 20){
+                        cells.add(new Cell(x, y, true));
+                    }
+                    else{
+                        cells.add(new Cell(x, y, false));
+                    }
                 }
                 else {
                     cells.add(new Cell(x, y, false));
@@ -36,7 +47,7 @@ public class Game{
             scan.nextLine();
 
             //udregn naboer for hver celle
-            this.cells = determineAliveNeighbors(cells);
+            determineAliveNeighbors();
 
             //kør regler på hver celle.
             runRules();
@@ -46,62 +57,57 @@ public class Game{
         }
     }
 
-    public ArrayList<Cell> determineAliveNeighbors(ArrayList<Cell> cells){
+    public void determineAliveNeighbors(){
 
-        for(int z = 0; z < cells.size(); z++){
-            cells.get(z).setNeighborsAliveCount(0);
+        for(Cell cell : cells){
+
+            cell.setNeighborsAliveCount(0);
             int neighborsAliveCounter = 0;
 
             for(int i = 0; i < cells.size(); i++){
-                if(Arrays.equals(cells.get(z).getNeighborUpperLeft(), cells.get(i).getCellXY())){
+                if(Arrays.equals(cell.getNeighborUpperLeft(), cells.get(i).getCellXY())){
                     if(cells.get(i).getAliveStatus()){
                         neighborsAliveCounter++;
                     }
                 }
-                else if(Arrays.equals(cells.get(z).getNeighborUpperRight(), cells.get(i).getCellXY())){
+                else if(Arrays.equals(cell.getNeighborUpperRight(), cells.get(i).getCellXY())){
                     if(cells.get(i).getAliveStatus()){
                         neighborsAliveCounter++;
                     }
                 }
-                else if(Arrays.equals(cells.get(z).getNeighborDownRight(), cells.get(i).getCellXY())){
+                else if(Arrays.equals(cell.getNeighborDownRight(), cells.get(i).getCellXY())){
                     if(cells.get(i).getAliveStatus()){
                         neighborsAliveCounter++;
                     }
                 }
-                else if(Arrays.equals(cells.get(z).getNeighborDownLeft(), cells.get(i).getCellXY())){
+                else if(Arrays.equals(cell.getNeighborDownLeft(), cells.get(i).getCellXY())){
                     if(cells.get(i).getAliveStatus()){
                         neighborsAliveCounter++;
                     }
                 }
-                else if(Arrays.equals(cells.get(z).getNeighborUp(), cells.get(i).getCellXY())){
+                else if(Arrays.equals(cell.getNeighborUp(), cells.get(i).getCellXY())){
                     if(cells.get(i).getAliveStatus()){
                         neighborsAliveCounter++;
                     }
                 }
-                else if(Arrays.equals(cells.get(z).getNeighborDown(), cells.get(i).getCellXY())){
+                else if(Arrays.equals(cell.getNeighborDown(), cells.get(i).getCellXY())){
                     if(cells.get(i).getAliveStatus()){
                         neighborsAliveCounter++;
                     }
                 }
-                else if(Arrays.equals(cells.get(z).getNeighborLeft(), cells.get(i).getCellXY())){
+                else if(Arrays.equals(cell.getNeighborLeft(), cells.get(i).getCellXY())){
                     if(cells.get(i).getAliveStatus()){
                         neighborsAliveCounter++;
                     }
                 }
-                else if(Arrays.equals(cells.get(z).getNeighborRight(), cells.get(i).getCellXY())){
+                else if(Arrays.equals(cell.getNeighborRight(), cells.get(i).getCellXY())){
                     if(cells.get(i).getAliveStatus()){
                         neighborsAliveCounter++;
                     }
                 }
-
-
-
-
             }
-            cells.get(z).setNeighborsAliveCount(neighborsAliveCounter);
-
+            cell.setNeighborsAliveCount(neighborsAliveCounter);
         }
-        return cells;
     }
 
 
@@ -125,9 +131,8 @@ public class Game{
                 else{
                     System.out.println("Du bør ikke være her");
                 }
-
             }
-            else if(cell.getAliveStatus()== false){
+            else if(cell.getAliveStatus() == false){
                 //reproduction
                 if(cell.getNeighborsAliveCount() == 3){
                     cell.setTempAliveStatus(true);
@@ -136,9 +141,7 @@ public class Game{
             else {
                 System.out.println("Du bør ikke være here");
             }
-
         }
-
     }
     public void runTick(){
         for(Cell cell : cells){
