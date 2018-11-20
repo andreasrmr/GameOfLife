@@ -3,33 +3,32 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class Game{
 
-    ArrayList<Boolean> cells = new ArrayList<Boolean>();
-    boolean cell;
+    ArrayList<Cell> cells = new ArrayList<Cell>();
     boolean running = true;
     Visuals visuals;
-    World world = new World(10, 10);
+    World world = new World(30, 30);
 
     public Game(){
 
         //Initialiser 1. generation.
 
-        //y aksen
-        for (int y = 0; y < world.getGridX(); y++) {
-            //x aksen
-            for (int x = 0; x < world.getGridY(); x++) {
+        //x aksen
+        for (int x = 0; x < world.getGridX(); x++) {
+            //y aksen
+            for (int y = 0; y < world.getGridY(); y++) {
 
                 //definer levende celler  på x aksen
-                if(y % 5 == 0 && y != 0){
+                if(x % 15 == 0 && x != 0){
                     //definer levende celler på y aksen
-                    if(x >= 2 && x < 8){
-                        cells.add(true);
+                    if(y >= 10 && y < 20){
+                        cells.add(new Cell(x, y, true));
                     }
                     else{
-                        cells.add(false);
+                        cells.add(new Cell(x, y, false));
                     }
                 }
                 else {
-                    cells.add(false);
+                    cells.add(new Cell(x, y, false));
                 }
 
             }
@@ -48,37 +47,23 @@ public class Game{
             scan.nextLine();
 
             //udregn naboer for hver celle
-            //determineAliveNeighbors();
+            determineAliveNeighbors();
 
             //kør regler på hver celle.
-            //runRules();
+            runRules();
 
             //kør næste tick/generation.
-            //runTick();
+            runTick();
         }
     }
-    //Tæl naboer.
+
     public void determineAliveNeighbors(){
 
-        int neighborsAliveCount = 0;
+        for(Cell cell : cells){
 
-        for(int i = 0; i < cells.size(); i++){
-
-            if(i - world.getGridX()){
-                
-            }
-
-            //i1 = [0,0]
-            //i2 = [1,0]
-            //i3 = [2,0]
-
-
-        }
-
-
-
-/*
             cell.setNeighborsAliveCount(0);
+            int neighborsAliveCounter = 0;
+
             for(int i = 0; i < cells.size(); i++){
                 if(Arrays.equals(cell.getNeighborUpperLeft(), cells.get(i).getCellXY())){
                     if(cells.get(i).getAliveStatus()){
@@ -122,11 +107,10 @@ public class Game{
                 }
             }
             cell.setNeighborsAliveCount(neighborsAliveCounter);
-            */
-
+        }
     }
 
-/*
+
     public void runRules(){
 
         for(Cell cell : cells){
@@ -159,13 +143,10 @@ public class Game{
             }
         }
     }
-    */
-    /*
     public void runTick(){
         for(Cell cell : cells){
             cell.setAliveStatus(cell.getTempAliveStatus());
         }
     }
-    */
 
 }

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 public class Visuals {
-    public Visuals(ArrayList<Boolean> cells, World world){
+    public Visuals(ArrayList<Cell> cells, World world){
 
         int count = 0;
 
@@ -8,9 +8,9 @@ public class Visuals {
         String alive = "#";
 
         System.out.print("\033[H\033[2J");
-        for(Boolean cell : cells){
+        for(Cell cell : cells){
 
-            if(cell)
+            if(cell.getAliveStatus())
             {
                 System.out.print(alive);
                 count++;
