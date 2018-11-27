@@ -20,7 +20,7 @@ public class Game{
                 //definer levende celler  på x aksen
                 if(x % 15 == 0 && x != 0){
                     //definer levende celler på y aksen
-                    if(y >= 10 && y < 20){
+                    if(y >= 0 && y < 30){
                         cells.add(new Cell(x, y, true));
                     }
                     else{

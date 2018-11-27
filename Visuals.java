@@ -1,32 +1,28 @@
 import java.util.ArrayList;
 public class Visuals {
-    public Visuals(ArrayList<Boolean> cells, World world){
 
-        int count = 0;
+    //Game game;
+    //ArrayList<boolean[]> yGrid = new ArrayList<boolean[]>();
+    public Visuals(World world){
 
-        String dead = "-";
-        String alive = "#";
 
-        System.out.print("\033[H\033[2J");
-        for(Boolean cell : cells){
+        //yGrid = game.getyGrid();
 
-            if(cell)
-            {
-                System.out.print(alive);
-                count++;
-                if(count % world.getGridX() == 0){
-                    System.out.print("\n");
-                }
+
+        /*
+        for(int y = 0; y < world.getGridY(); y++){
+
+            for(int x = 0; x < world.getGridX(); x++){
+
+                //if(gridY.get(y).gridX(x)){
+                //    System.out.println("Point: " + x + ", " + y + " was true");
+                //}
+
             }
-            else{
-                System.out.print(dead);
-                count++;
-                if(count % world.getGridX() == 0){
-                    System.out.print("\n");
-                }
-            }
+
+        }
+        */
+
         }
 
     }
-
-}

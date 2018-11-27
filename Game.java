@@ -3,7 +3,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class Game{
 
-    ArrayList<Boolean> cells = new ArrayList<Boolean>();
+    //ArrayList<Boolean> cells = new ArrayList<Boolean>();
+    ArrayList<boolean[]> yGrid;
+    boolean[] xGrid;
+
     boolean cell;
     boolean running = true;
     Visuals visuals;
@@ -12,33 +15,32 @@ public class Game{
     public Game(){
 
         //Initialiser 1. generation.
+        //Opret grid med plads til celler.
 
-        //y aksen
-        for (int y = 0; y < world.getGridX(); y++) {
-            //x aksen
-            for (int x = 0; x < world.getGridY(); x++) {
+        yGrid = new ArrayList<boolean[]>();
+        //y akse.
 
-                //definer levende celler  på x aksen
-                if(y % 5 == 0 && y != 0){
-                    //definer levende celler på y aksen
-                    if(x >= 2 && x < 8){
-                        cells.add(true);
-                    }
-                    else{
-                        cells.add(false);
-                    }
+        for(int y = 0; y < world.getGridY(); y++){
+            //x akse
+            xGrid = new boolean[world.getGridX()];
+            for(int x = 0; x < xGrid.length; x++){
+
+                //døde celler defineres
+                xGrid[x] = false;
+
+                //levende celler defineres.
+                if(y == 5 && x > 2 && x < 7){
+                    xGrid[x] = true;
                 }
-                else {
-                    cells.add(false);
-                }
-
             }
+            System.out.println(Arrays.toString(xGrid));
+            yGrid.add(xGrid);
         }
 
         while (running == true){
 
-            //Kør visuals efter spil er læst ind.
-            visuals = new Visuals(cells, world);
+            //Kør visuals (1. gen er læst ind via constructor.).
+            printGenToScreen();
 
             //tryk enter for næste generation.
             System.out.println();
@@ -48,7 +50,7 @@ public class Game{
             scan.nextLine();
 
             //udregn naboer for hver celle
-            //determineAliveNeighbors();
+            determineAliveNeighbors();
 
             //kør regler på hver celle.
             //runRules();
@@ -60,20 +62,41 @@ public class Game{
     //Tæl naboer.
     public void determineAliveNeighbors(){
 
-        int neighborsAliveCount = 0;
 
-        for(int i = 0; i < cells.size(); i++){
+        for(int y = 0; y < world.getGridY(); y++){
+            boolean[] z = yGrid.get(y);
 
-            if(i - world.getGridX()){
-                
+            for(int x = 0; x < world.getGridX(); y++){
+
+
+
             }
 
-            //i1 = [0,0]
-            //i2 = [1,0]
-            //i3 = [2,0]
-
-
         }
+
+        /*
+        public void printGenToScreen(){
+
+            String dead = "-";
+            String alive = "#";
+            //clear screen.
+            System.out.print("\033[H\033[2J");
+
+            for(int y = 0; y < world.getGridY(); y++){
+                boolean[] z = yGrid.get(y);
+
+                for(int x = 0; x < world.getGridX(); x++){
+                    if(!(z[x])){
+                        System.out.print(dead);
+                    }
+                    else {
+                        System.out.print(alive);
+                    }
+                }
+                System.out.println();
+            }
+        }
+        */
 
 
 
