@@ -1,15 +1,25 @@
 package v2;
 public class GameBoard {
 
-    int gameboardX = 20;
-    int gameboardY = 20;
+    static int gameboardX;
+    static int gameboardY;
+    static int boardSize;
 
-    public int getGameboardX() {
+    public GameBoard(int gameboardX, int gameboardY){
+        this.gameboardX = gameboardX;
+        this.gameboardY = gameboardY;
+        this.boardSize = gameboardX * gameboardY;
+    }
+    public static int getGameboardX() {
         return gameboardX;
     }
 
-    public int getGameboardY() {
+    public static int getGameboardY() {
         return gameboardY;
+    }
+
+    public static int getBoardSize(){
+        return boardSize;
     }
 
 }

@@ -1,24 +1,30 @@
 package v2;
 import java.util.ArrayList;
+import static v2.GameBoard.*;
+
 public class Visuals {
 
-    final String dead = " ";
+    final String dead = "-";
     final String alive = "#";
+
     public Visuals(){}
-    public Visuals(GameBoard gameBoard, ArrayList<Boolean> cellList){
-        for(int i = 0; i < gameBoard.getGameboardY(); i++){
+    public Visuals(ArrayList<String> listCells){
 
-            for(int j = 0; j < gameBoard.getGameboardX(); j++){
-                if (cellList.get(j)) {
-                    System.out.print(dead);
-                }
-                else {
-                    System.out.print(alive);
-                }
-            }
-            System.out.println();
 
-        }
+       for(int i = 0; i < getBoardSize(); i++){
+           if(listCells.get(i).charAt(2) == '0'){
+               System.out.print(dead);
+           }
+           else {
+               System.out.print(alive);
+           }
+           if(i != 0 && i != 1){
+               if(i % getGameboardX()== 0){
+                   System.out.println();
+               }
 
+           }
+       }
+       System.out.println();
     }
 }
