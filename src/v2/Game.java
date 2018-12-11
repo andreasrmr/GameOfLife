@@ -9,6 +9,37 @@ public class Game{
         Boolean cell[][] = new Boolean[getGameboardX()][getGameboardY()];
 
 
+        for(int y = 0; y < getGameboardY(); y++){
+            for (int x = 0; x < getGameboardX(); x++){
+                //alle celler i x = 5 lever.
+                if(y == 4){
+                    cell[x][y] = true;
+                }
+                //resten af cellerne er døde.
+                else {
+                    cell[x][y] = false;
+                }
+
+            }
+        }
+
+        //Visuals
+        for(int y = 0; y < getGameboardY(); y++){
+
+            for(int x = 0; x < getGameboardX(); x++){
+
+                if(cell[x][y] == false){
+                    System.out.print("#");
+                }
+                else {
+                    System.out.print("-");
+                }
+
+            }
+            System.out.println();
+
+
+        }
 
     }
 
