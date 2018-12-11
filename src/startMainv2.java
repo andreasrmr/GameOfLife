@@ -1,6 +1,8 @@
+import v2.*;
+
 import java.util.ArrayList;
-import v2-WIP.*;
-public class startMain {
+
+public class startMainv2 {
     public static void main(String[] args){
         GameBoard gameBoard = new GameBoard();
         Cell cell = new Cell();

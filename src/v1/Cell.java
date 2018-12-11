@@ -1,3 +1,4 @@
+package v1;
 public class Cell {
 
     private boolean aliveStatus;

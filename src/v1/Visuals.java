@@ -1,3 +1,4 @@
+package v1;
 import java.util.ArrayList;
 public class Visuals {
     public Visuals(ArrayList<Cell> cells, World world){

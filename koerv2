@@ -1,0 +1,2 @@
+javac -g -sourcepath src src/startMainv2.java -d out/production/v2
+java -cp out/production/v2 startMainv2

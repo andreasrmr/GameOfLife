@@ -1,4 +1,4 @@
-package v2-WIP;
+package v2;
 
 public class Cell {
     int cellX;
