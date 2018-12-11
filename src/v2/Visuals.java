@@ -8,12 +8,13 @@ public class Visuals {
     final String alive = "#";
 
     public Visuals(){}
-    public Visuals(Boolean[][] cell){
+
+    public void printVisuals(Boolean[][] cells){
         for(int y = 0; y < getGameboardY(); y++){
 
             for(int x = 0; x < getGameboardX(); x++){
 
-                if(cell[x][y] == false){
+                if(cells[x][y] == false){
                     System.out.print("#");
                 }
                 else {
