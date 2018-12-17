@@ -6,8 +6,8 @@ public class GameBoard {
     static int boardSize;
 
     public GameBoard(int gameboardX, int gameboardY){
-        this.gameboardX = gameboardX;
-        this.gameboardY = gameboardY;
+        this.gameboardX = gameboardX + 1;
+        this.gameboardY = gameboardY + 1;
         this.boardSize = gameboardX * gameboardY;
     }
     public static int getGameboardX() {
